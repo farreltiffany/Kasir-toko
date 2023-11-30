@@ -1,7 +1,101 @@
 from tkinter import *
+from tkinter import messagebox
+import random,os
+#functionality part
+
+if not os.path.exists('bills'):
+    os.mkdir('bills')
+
+
+def save_bill():
+       global billnumber
+       result= messagebox.askyesno('confirm','do you want to save the bill?')
+       if result:
+               bill_content=textarea.get(1.0,END)
+               file=open(f'bills/ {billnumber}.txt','m')
+               file.write(bill_content)
+               file.close()
+               messagebox.showinfo('success',f'{billnumber} is save successfully')
+               billnumber = random.randint(500, 1000)
+
+billnumber=random.randint(500,1000)
+
+
+def bill_area():
+    #if nameEntry.get()=='' or phoneEntry.get()=='':
+    #   messagebox.showerror('error','customer details are required')
+    #elif bukupriceEntry.get()=='' and alattulispriceEntry.get()=='' and ATKpriceEntry.get()=='':
+    #   messagebox.showerror('error','no product are selected')
+    #elif bukupriceEntry.get()=='0 Rp' and alattulispriceEntry.get()=='0 Rp' and ATKpriceEntry.get()=='0 Rp':
+    #   messagebox.showerror('error','no product are selected')
+    textarea.delete(1.0,END)
+
+    textarea.insert(END,'\t\t** Welcome Customer**\n')
+    textarea.insert(END,f'\nBill Number: {billnumber}\n')
+    textarea.insert(END,f'\nCustomer Name: {nameEntry.get()}\n')
+    textarea.insert(END,f'\nCustomer Phone Number: {phoneEntry.get()}\n')
+    textarea.insert(END,'\n=======================================================')
+    textarea.insert(END,'Product\t\t\tQuantity\t\t\tprice')
+    textarea.insert(END,'\n=======================================================')
+    if bukutulisEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{bukutulisEntry.get()}\t\t\t{bukutulisprice} Rp')
+    if bukugambara3Entry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{bukugambara3Entry.get()}\t\t\t{bukugambara3price} Rp')
+    if bukugambara4Entry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{bukugambara4Entry.get()}\t\t\t{bukugambara4price} Rp')
+    if bukuhalusEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{bukuhalusEntry.get()}\t\t\t{bukuhalusprice} Rp')
+    if bukustriminEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{bukustriminEntry.get()}\t\t\t{bukustriminprice} Rp')
+    if pepakbasajawaEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{pepakbasajawaEntry.get()}\t\t\t{pepakbasajawaprice} Rp')
+
+
+    if pensilEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{pensilEntry.get()}\t\t\t{pensilprice} Rp')
+    if bolpointEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{bolpointEntry.get()}\t\t\t{bolpointprice} Rp')
+    if pensilwarnaEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{pensilwarnaEntry.get()}\t\t\t{pensilwarnaprice} Rp')
+    if penggarisEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{penggarisEntry.get()}\t\t\t{penggarisprice} Rp')
+    if spidolEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{spidolEntry.get()}\t\t\t{spidolprice} Rp')
+    if penghapusEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{penghapusEntry.get()}\t\t\t{penghapusprice} Rp')
+
+
+    if selotipEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{selotipEntry.get()}\t\t\t{pensilprice} Rp')
+    if amplopEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{amplopEntry.get()}\t\t\t{bolpointprice} Rp')
+    if lemEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{lemEntry.get()}\t\t\t{pensilwarnaprice} Rp')
+    if rautanEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{rautanEntry.get()}\t\t\t{penggarisprice} Rp')
+    if stabiloEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{stabiloEntry.get()}\t\t\t{spidolprice} Rp')
+    if tippxEntry.get()!='0':
+              textarea.insert(END,f'\nBuku Tulis\t\t\t{tippxEntry.get()}\t\t\t{penghapusprice} Rp')
+
+    textarea.insert(END,'\n-------------------------------------------------------')
+
+    if bukutaxEntry.get()!='0.0 Rp':
+              textarea.insert(END,f'\nBuku Tax\t\t\t\t{bukutaxEntry.get()}')
+    if alattulistaxEntry.get()!='0.0 Rp':
+              textarea.insert(END,f'\nBuku Tax\t\t\t\t{alattulistaxEntry.get()}')
+    if ATKtaxEntry.get()!='0.0 Rp':
+              textarea.insert(END,f'\nBuku Tax\t\t\t\t{ATKtaxEntry.get()}')
+    textarea.insert(END,f'\n\nTotal Bill \t\t\t\t {totalbill}')
+    textarea.insert(END,'\n-------------------------------------------------------')
+    save_bill()
 
 #functionality part
 def total():
+    global bukutulisprice,bukugambara3price,bukugambara4price,bukuhalusprice,bukustriminprice,pepakbasajawaprice
+    global pensilprice,bolpointprice,pensilwarnaprice,penggarisprice,spidolprice,penghapusprice
+    global selotipprice,amplopprice,lemprice,rautanprice,stabiloprice,tippxprice
+    global totalbill
     #buku price calculation
     bukutulisprice = int(bukutulisEntry.get())*4500
     bukugambara3price = int(bukugambara3Entry.get())*7000
@@ -47,7 +141,7 @@ def total():
     ATKtaxEntry.delete(0, END)
     ATKtaxEntry.insert(0, str(ATKtax)+'rupiah')
 
-
+    totalbill=totalbukuprice+totalalattulisprice+totalATKprice+bukupricestax+alattulispricestax+ATKtax
 
     
 
@@ -281,7 +375,7 @@ buttonFrame.grid(row=0,column=4,rowspan=3)
 totalButton=Button(buttonFrame,text='Total',font=('arial',16,'bold'),bg='gray20',fg='white',bd=5,width=8,pady=10,command=total)
 totalButton.grid(row=0,column=0,pady=20,padx=5)
 
-billButton=Button(buttonFrame,text='Bill',font=('arial',16,'bold'),bg='gray20',fg='white',bd=5,width=8,pady=10)
+billButton=Button(buttonFrame,text='Bill',font=('arial',16,'bold'),bg='gray20',fg='white',bd=5,width=8,pady=10,command=bill_area)
 billButton.grid(row=0,column=1,pady=20,padx=5)
 
 emailButton=Button(buttonFrame,text='Email',font=('arial',16,'bold'),bg='gray20',fg='white',bd=5,width=8,pady=10)
