@@ -3,6 +3,7 @@ from tkinter import messagebox
 import random,os
 #functionality part
 
+
 if not os.path.exists('bills'):
     os.mkdir('bills')
 
@@ -22,12 +23,12 @@ billnumber=random.randint(500,1000)
 
 
 def bill_area():
-    #if nameEntry.get()=='' or phoneEntry.get()=='':
-    #   messagebox.showerror('error','customer details are required')
-    #elif bukupriceEntry.get()=='' and alattulispriceEntry.get()=='' and ATKpriceEntry.get()=='':
-    #   messagebox.showerror('error','no product are selected')
-    #elif bukupriceEntry.get()=='0 Rp' and alattulispriceEntry.get()=='0 Rp' and ATKpriceEntry.get()=='0 Rp':
-    #   messagebox.showerror('error','no product are selected')
+    if nameEntry.get()=='' or phoneEntry.get()=='':
+       messagebox.showerror('error','customer details are required')
+    elif bukupriceEntry.get()=='' and alattulispriceEntry.get()=='' and ATKpriceEntry.get()=='':
+       messagebox.showerror('error','no product are selected')
+    elif bukupriceEntry.get()=='0 Rp' and alattulispriceEntry.get()=='0 Rp' and ATKpriceEntry.get()=='0 Rp':
+       messagebox.showerror('error','no product are selected')
     textarea.delete(1.0,END)
 
     textarea.insert(END,'\t\t** Welcome Customer**\n')
@@ -52,31 +53,31 @@ def bill_area():
 
 
     if pensilEntry.get()!='0':
-              textarea.insert(END,f'\nBuku Tulis\t\t\t{pensilEntry.get()}\t\t\t{pensilprice} Rp')
+              textarea.insert(END,f'\nAlat Tulis\t\t\t{pensilEntry.get()}\t\t\t{pensilprice} Rp')
     if bolpointEntry.get()!='0':
-              textarea.insert(END,f'\nBuku Tulis\t\t\t{bolpointEntry.get()}\t\t\t{bolpointprice} Rp')
+              textarea.insert(END,f'\nAlat Tulis\t\t\t{bolpointEntry.get()}\t\t\t{bolpointprice} Rp')
     if pensilwarnaEntry.get()!='0':
-              textarea.insert(END,f'\nBuku Tulis\t\t\t{pensilwarnaEntry.get()}\t\t\t{pensilwarnaprice} Rp')
+              textarea.insert(END,f'\nAlat Tulis\t\t\t{pensilwarnaEntry.get()}\t\t\t{pensilwarnaprice} Rp')
     if penggarisEntry.get()!='0':
-              textarea.insert(END,f'\nBuku Tulis\t\t\t{penggarisEntry.get()}\t\t\t{penggarisprice} Rp')
+              textarea.insert(END,f'\nAlat Tulis\t\t\t{penggarisEntry.get()}\t\t\t{penggarisprice} Rp')
     if spidolEntry.get()!='0':
-              textarea.insert(END,f'\nBuku Tulis\t\t\t{spidolEntry.get()}\t\t\t{spidolprice} Rp')
+              textarea.insert(END,f'\nAlat Tulis\t\t\t{spidolEntry.get()}\t\t\t{spidolprice} Rp')
     if penghapusEntry.get()!='0':
-              textarea.insert(END,f'\nBuku Tulis\t\t\t{penghapusEntry.get()}\t\t\t{penghapusprice} Rp')
+              textarea.insert(END,f'\nAlat Tulis\t\t\t{penghapusEntry.get()}\t\t\t{penghapusprice} Rp')
 
 
     if selotipEntry.get()!='0':
-              textarea.insert(END,f'\nBuku Tulis\t\t\t{selotipEntry.get()}\t\t\t{pensilprice} Rp')
+              textarea.insert(END,f'\nAtk\t\t\t{selotipEntry.get()}\t\t\t{pensilprice} Rp')
     if amplopEntry.get()!='0':
-              textarea.insert(END,f'\nBuku Tulis\t\t\t{amplopEntry.get()}\t\t\t{bolpointprice} Rp')
+              textarea.insert(END,f'\nAtk\t\t\t{amplopEntry.get()}\t\t\t{bolpointprice} Rp')
     if lemEntry.get()!='0':
-              textarea.insert(END,f'\nBuku Tulis\t\t\t{lemEntry.get()}\t\t\t{pensilwarnaprice} Rp')
+              textarea.insert(END,f'\nAtk\t\t\t{lemEntry.get()}\t\t\t{pensilwarnaprice} Rp')
     if rautanEntry.get()!='0':
-              textarea.insert(END,f'\nBuku Tulis\t\t\t{rautanEntry.get()}\t\t\t{penggarisprice} Rp')
+              textarea.insert(END,f'\nAtk\t\t\t{rautanEntry.get()}\t\t\t{penggarisprice} Rp')
     if stabiloEntry.get()!='0':
-              textarea.insert(END,f'\nBuku Tulis\t\t\t{stabiloEntry.get()}\t\t\t{spidolprice} Rp')
+              textarea.insert(END,f'\nAtk\t\t\t{stabiloEntry.get()}\t\t\t{spidolprice} Rp')
     if tippxEntry.get()!='0':
-              textarea.insert(END,f'\nBuku Tulis\t\t\t{tippxEntry.get()}\t\t\t{penghapusprice} Rp')
+              textarea.insert(END,f'\nAtk\t\t\t{tippxEntry.get()}\t\t\t{penghapusprice} Rp')
 
     textarea.insert(END,'\n-------------------------------------------------------')
 
