@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-import random,os
+import random,os, tempfile
 #functionality part
 
 
@@ -8,18 +8,113 @@ if not os.path.exists('bills'):
     os.mkdir('bills')
 
 
-def save_bill():
-       global billnumber
-       result= messagebox.askyesno('confirm','do you want to save the bill?')
-       if result:
-               bill_content=textarea.get(1.0,END)
-               file=open(f'bills/ {billnumber}.txt','m')
-               file.write(bill_content)
-               file.close()
-               messagebox.showinfo('success',f'{billnumber} is save successfully')
-               billnumber = random.randint(500, 1000)
+from tkinter import messagebox, END
 
-billnumber=random.randint(500,1000)
+billnumber = 1
+
+def save_bill():
+    global billnumber
+    result = messagebox.askyesno('Confirm', 'Do you want to save the bill?')
+    if result:
+        # Assuming textarea is defined somewhere in your code
+        bill_content = textarea.get(1.0, END)
+        file_path = f'bills/{billnumber}.txt'
+        with open(file_path, 'w') as file:
+            file.write(bill_content)
+        messagebox.showinfo('Success', f'{billnumber} is saved successfully')
+        billnumber += 1
+        
+def search_bill():
+    for i in os.listdir('bills/'):
+        if i.split('.')[0]==billnumberEntry.get():
+            f=open(f'bills/{i}','r')
+            textarea.delete(1.0,END)
+            for data in f:
+                textarea.insert(END,data)
+            f.close()
+            break
+
+    else:
+        messagebox.showerror('Error','Invalid Bill Number')
+
+def print_bill():
+    if textarea.get(1.0,END)=='\n':
+        messagebox.showerror('Error','Bill is empty')
+    else:
+        file=tempfile.mktemp('.txt')
+        open(file,'w').write(textarea.get(1.0,END))
+        os.startfile(file,'print')
+
+def clear():
+    bukutulisEntry.delete(0,END)
+    bukugambara3Entry.delete(0,END)
+    bukugambara4Entry.delete(0,END)
+    bukuhalusEntry.delete(0,END)
+    bukustriminEntry.delete(0,END)
+    pepakbasajawaEntry.delete(0,END)
+
+    pensilEntry.delete(0,END)
+    bolpointEntry.delete(0,END)
+    pensilwarnaEntry.delete(0,END)
+    penggarisEntry.delete(0,END)
+    spidolEntry.delete(0,END)
+    penghapusEntry.delete(0,END)
+
+    selotipEntry.delete(0,END)
+    amplopEntry.delete(0,END)
+    lemEntry.delete(0,END)
+    rautanEntry.delete(0,END)
+    stabiloEntry.delete(0,END)
+    tippxEntry.delete(0,END)
+
+
+    bukutulisEntry.insert(0,0)
+    bukugambara3Entry.insert(0,0)
+    bukugambara4Entry.insert(0,0)
+    bukuhalusEntry.insert(0,0)
+    bukustriminEntry.insert(0,0)
+    pepakbasajawaEntry.insert(0,0)
+
+    pensilEntry.insert(0,0)
+    bolpointEntry.insert(0,0)
+    pensilwarnaEntry.insert(0,0)
+    penggarisEntry.insert(0,0)
+    spidolEntry.insert(0,0)
+    penghapusEntry.insert(0,0)
+
+    selotipEntry.insert(0,0)
+    amplopEntry.insert(0,0)
+    lemEntry.insert(0,0)
+    rautanEntry.insert(0,0)
+    stabiloEntry.insert(0,0)
+    tippxEntry.insert(0,0)
+
+    bukutaxEntry.delete(0,END)
+    alattulistaxEntry.delete(0,END)
+    ATKtaxEntry.delete(0,END)
+
+    bukupriceEntry.delete(0,END)
+    alattulispriceEntry.delete(0,END)
+    ATKpriceEntry.delete(0,END)
+
+    nameEntry.delete(0,END)
+    phoneEntry.delete(0,END)
+    billnumberEntry.delete(0,END)
+
+    textarea.delete(1.0,END)
+
+def delete_bill():
+    bill_number = billnumberEntry.get()
+    file_path = f'bills/{bill_number}.txt'
+
+    if os.path.exists(file_path):
+        os.remove(file_path)
+        # Clear the textarea after deleting the bill
+        textarea.delete(1.0, END)
+        messagebox.showinfo('Success', 'Bill deleted successfully')
+    else:
+        messagebox.showerror('Error', 'Invalid Bill Number')
+
 
 
 def bill_area():
@@ -178,7 +273,7 @@ billnumberLabel.grid(row=0,column=4,padx=20,pady=2)
 billnumberEntry=Entry(customer_details_frame,font=('arial',15),bd=7,width=18)
 billnumberEntry.grid(row=0,column=5,padx=8)
 
-searchButton=Button(customer_details_frame,text='SEARCH',font=('arial',12,'bold'),bd=7,width=10)
+searchButton=Button(customer_details_frame,text='SEARCH',font=('arial',12,'bold'),bd=7,width=10,command=search_bill)
 searchButton.grid(row=0,column=6,padx=20,pady=8)
 
 productsFrame=Frame(root)
@@ -379,13 +474,14 @@ totalButton.grid(row=0,column=0,pady=20,padx=5)
 billButton=Button(buttonFrame,text='Bill',font=('arial',16,'bold'),bg='gray20',fg='white',bd=5,width=8,pady=10,command=bill_area)
 billButton.grid(row=0,column=1,pady=20,padx=5)
 
-emailButton=Button(buttonFrame,text='Email',font=('arial',16,'bold'),bg='gray20',fg='white',bd=5,width=8,pady=10)
-emailButton.grid(row=0,column=2,pady=20,padx=5)
+deletebillButton=Button(buttonFrame,text='Delete Bill',font=('arial',16,'bold'),bg='gray20',fg='white',bd=5,width=8,pady=10,command=delete_bill)
+deletebillButton.grid(row=0,column=2,pady=20,padx=5)
 
-printButton=Button(buttonFrame,text='Print',font=('arial',16,'bold'),bg='gray20',fg='white',bd=5,width=8,pady=10)
+printButton=Button(buttonFrame,text='Print',font=('arial',16,'bold'),bg='gray20',fg='white',bd=5,width=8,pady=10,command=print_bill)
 printButton.grid(row=0,column=3,pady=20,padx=5)
 
-clearButton=Button(buttonFrame,text='Clear',font=('arial',16,'bold'),bg='gray20',fg='white',bd=5,width=8,pady=10)
+clearButton=Button(buttonFrame,text='Clear',font=('arial',16,'bold'),bg='gray20',fg='white',bd=5,width=8,pady=10,command=clear)
 clearButton.grid(row=0,column=4,pady=20,padx=5)
+
 
 root.mainloop()

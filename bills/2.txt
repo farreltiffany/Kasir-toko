@@ -1,0 +1,20 @@
+		** Welcome Customer**
+
+Bill Number: 2
+
+Customer Name: rell
+
+Customer Phone Number: 23
+
+=======================================================Product			Quantity			price
+=======================================================
+Buku Tulis			1			3000 Rp
+Alat Tulis			4			12000 Rp
+Atk			1			0 Rp
+-------------------------------------------------------
+Buku Tax				240.0 rupiah
+Buku Tax				960.0rupiah
+Buku Tax				640.0rupiah
+
+Total Bill 				 24840.0
+-------------------------------------------------------

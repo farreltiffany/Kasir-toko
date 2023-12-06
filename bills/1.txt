@@ -1,0 +1,19 @@
+		** Welcome Customer**
+
+Bill Number: 1
+
+Customer Name: ika
+
+Customer Phone Number: 0921273
+
+=======================================================Product			Quantity			price
+=======================================================
+Buku Tulis			2			14000 Rp
+Alat Tulis			3			9000 Rp
+-------------------------------------------------------
+Buku Tax				1120.0 rupiah
+Buku Tax				720.0rupiah
+Buku Tax				0.0rupiah
+
+Total Bill 				 24840.0
+-------------------------------------------------------
